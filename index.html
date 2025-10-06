@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Ujian Tahfidz Kelas 5B – Tanpa Nomor HP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variabel */
+        :root {
+            --color-white: #ffffff;
+            --color-light-green: #e9ffe9;
+            --color-mid-green: #008000;
+            --color-soft-gray: #f9f9f9;
+            --color-text-dark: #333333;
+            --font-main: 'Poppins', sans-serif;
+            --container-max-width: 900px;
+        }
+
+        /* Body dan Layout Utama */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-soft-gray);
+            color: var(--color-text-dark);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: var(--color-white);
+            max-width: var(--container-max-width);
+            width: 100%;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Judul dan Paragraf */
+        h1 {
+            color: var(--color-mid-green);
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.8em;
+        }
+
+        .intro-paragraph {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: var(--color-light-green);
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        /* --- Desain Tabel (PC/Desktop - Tetap Tampilkan Nomor) --- */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            min-width: 650px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: var(--color-mid-green);
+            color: var(--color-white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--color-soft-gray);
+        }
+
+        @media (min-width: 769px) {
+            tbody tr:hover {
+                background-color: var(--color-light-green);
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+        }
+        
+        /* Kolom Nomor di PC */
+        td:nth-child(1) { 
+            text-align: center;
+            width: 40px;
+            background-color: var(--color-light-green); 
+            font-weight: 600;
+            color: var(--color-mid-green);
+        }
+
+        /* Kolom Surat di PC */
+        td:nth-child(3) { 
+            font-weight: 600;
+            color: #555;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* --- MEDIA QUERY (Tampilan HP/Layar Kecil) --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 0;
+            }
+            
+            body{
+                padding: 10px;
+            }
+
+            .table-container {
+                overflow-x: visible; 
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+            table{
+                min-width: 100%;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px; /* Sembunyikan header tabel */
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                display: flex; 
+                flex-wrap: wrap; 
+                overflow: hidden; 
+                transition: all 0.3s ease-out; 
+            }
+
+            td {
+                border: none; 
+                padding: 12px;
+                text-align: left;
+                position: relative;
+            }
+            
+            /* Sembunyikan kolom Nomor sepenuhnya di HP */
+            td:nth-of-type(1) {
+                display: none; 
+            }
+            
+            /* Kolom Nama - Sekarang mengambil lebar penuh di awal kartu */
+            td:nth-of-type(2) {
+                width: 100%; 
+                flex: 0 0 100%;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                align-items: center; 
+                justify-content: space-between; 
+            }
+
+            /* Ikon Panah */
+            td:nth-of-type(2)::after {
+                content: '\25B8'; 
+                font-size: 0.8em;
+                color: #999;
+                transition: transform 0.3s ease;
+                margin-left: 10px; 
+            }
+
+            /* Kolom Surat (detail yang disembunyikan) */
+            td:nth-of-type(3) {
+                flex: 0 0 100%; 
+                padding: 0 12px; 
+                height: 0; 
+                opacity: 0; 
+                transition: all 0.3s ease-out; 
+                background-color: var(--color-light-green); 
+                color: var(--color-mid-green);
+                font-weight: normal;
+                border-top: 1px dashed var(--color-mid-green);
+                box-sizing: border-box; 
+                white-space: normal; 
+            }
+
+            /* Style untuk baris yang diklik/aktif */
+            tr.active {
+                background-color: var(--color-light-green); 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            tr.active td:nth-of-type(2) {
+                color: var(--color-mid-green);
+            }
+
+            tr.active td:nth-of-type(2)::after {
+                content: '\25BE'; 
+                color: var(--color-mid-green);
+            }
+            
+            tr.active td:nth-of-type(3) {
+                height: auto; 
+                padding: 12px; 
+                opacity: 1; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Ujian Tahfidz Kelas 5B – Semester 1</h1>
+        
+        <p class="intro-paragraph">
+            Assalamualaikum Warahmatullahi Wabarakatuh. Silakan <b>klik nama Siswa</b> pada daftar di bawah ini untuk melihat detail surat yang akan diujikan.
+        </p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Santri</th>
+                        <th>Surat yang Diujikan</th>
+                    </tr>
+                </thead>
+                <tbody id="tahfidz-list">
+                    <tr onclick="toggleSingleDetail(this)"><td>1</td><td>ADELIA SHAFWATUL INAYAH</td><td>An-Naziat, Abasa</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>2</td><td>AINUHA TSURAYYA EL-HAZIMA</td><td>Al Ma’arij & Nuh</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>3</td><td>AISYAH QOTRUNNADA EL-HAZIMA</td><td>Al Qalam & Al Haqqah</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>4</td><td>AISYAH SALSAL BILLAH</td><td>Al Insyiqoq</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>5</td><td>AQILA KHAIRIYYAH</td><td>An Naba & An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>6</td><td>ARIANNA FATIN AFIFAH</td><td>An Naba & An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>7</td><td>AUFARRIZAL RAYS</td><td>Al Muthoffifin & Al Insyiqoq</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>8</td><td>AZZZAHIRATUNNISA</td><td>Al Balad, Asy Syams</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>9</td><td>FADHIL GIBRAN MUBARAK</td><td>As Sof</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>10</td><td>KHOIRIL GIBRAN</td><td>Al Muzzammil</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>11</td><td>LATIFATUN NISA</td><td>An Naba & An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>12</td><td>M. DAFFA ALHAFIDZ</td><td>Abasa & At Takwir</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>13</td><td>M. KHAIRUL NAFIS</td><td>Al Muzzammil</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>14</td><td>MUAZZAM FATIH AL AYYUBI</td><td>Al Mursalat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>15</td><td>MUHAMMAD ABIDZAR</td><td>Al Mudatsir & Al Qiyamah</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>16</td><td>MUHAMMAD FAHRIR BHI RAHMAN</td><td>An Naba, An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>17</td><td>MUHAMMAD FATHI GAZA AL HUSNI</td><td>An Naba, An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>18</td><td>MUHAMMAD HARUN ABDULRAHMAN HASAN</td><td>Al Mursalat, An Naba</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>19</td><td>MUHAMMAD ZAKY ABYAN BUDIYONO</td><td>Al Muthoffifin</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>20</td><td>NURFATIMATUL ZUHRA</td><td>An Naba, Al Mursalat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>21</td><td>RAISHA NUR NA'IMAH</td><td>An Naba, An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>22</td><td>RAKA PURWANA YUSUF DJ</td><td>Al Infithor</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>23</td><td>RATU ASKANA</td><td>At Thoriq</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>24</td><td>SYIFA SAUQIAH</td><td>An Naba, An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>25</td><td>TARANGGA PRABANDANA</td><td>An Naba, An-Naziat</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>26</td><td>MUHAMMAD FAIJUL</td><td>Abasa, At Takwir</td></tr>
+                    <tr onclick="toggleSingleDetail(this)"><td>27</td><td>NURSABRINA LATHIFAH</td><td>Abasa, At Takwir</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Guru Tahfidz: Ust. Salahuddin Aslam – SDIT Al Farih</p>
+        </div>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT untuk Interaksi Single-Expand Responsif ---
+        function toggleSingleDetail(clickedRow) {
+            // Fungsi ini hanya berjalan di layar kecil (seperti HP)
+            if (window.innerWidth <= 768) {
+                const listContainer = document.getElementById('tahfidz-list');
+                const allRows = listContainer.getElementsByTagName('tr');
+                
+                // Cek apakah baris yang diklik sudah aktif
+                const isAlreadyActive = clickedRow.classList.contains('active');
+
+                // 1. Tutup semua baris yang sedang terbuka
+                for (let i = 0; i < allRows.length; i++) {
+                    allRows[i].classList.remove('active');
+                }
+
+                // 2. Jika baris yang diklik TEPAT TIDAK aktif sebelumnya,
+                //    maka sekarang buka (aktifkan) baris tersebut.
+                if (!isAlreadyActive) {
+                    clickedRow.classList.add('active');
+                }
+                
+                // Scroll agar baris yang aktif terlihat jelas di tengah layar HP
+                setTimeout(() => {
+                    clickedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300); 
+            }
+        }
+    </script>
+</body>
+</html>
